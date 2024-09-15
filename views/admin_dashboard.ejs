@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Admin Dashboard</title>
+		<link rel="stylesheet" href="/CSS/output.css" />
+	</head>
+
+	<body class="bg-gray-100">
+		<!-- Sidebar -->
+		<div class="flex flex-col sm:flex-row min-h-screen">
+			<!-- Sidebar -->
+			<div class="w-full sm:w-64 bg-gray-800 text-white">
+				<div class="p-4">
+					<h1 class="text-2xl font-bold">Admin Dashboard</h1>
+				</div>
+				<nav class="flex flex-col p-4">
+					<a href="#" class="py-2 px-4 text-gray-300 hover:bg-gray-700 rounded"
+						>Dashboard Overview</a
+					>
+					<a
+						href="#create-product"
+						class="py-2 px-4 text-gray-300 hover:bg-gray-700 rounded"
+						>Create Product</a
+					>
+					<a
+						href="#create-category"
+						class="py-2 px-4 text-gray-300 hover:bg-gray-700 rounded"
+						>Create Category</a
+					>
+					<a
+						href="#delete-product"
+						class="py-2 px-4 text-gray-300 hover:bg-gray-700 rounded"
+						>Delete Product</a
+					>
+				</nav>
+			</div>
+
+			<!-- Main Content -->
+			<div class="flex-1 p-6">
+				<!-- Dashboard Overview -->
+				<div class="bg-white shadow-md rounded-lg p-4 mb-6">
+					<h2 class="text-xl font-semibold mb-4">Dashboard Overview</h2>
+					<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+						<a href="/admin/products">
+							<div class="bg-blue-500 text-white rounded-lg p-4 shadow">
+								<h3 class="text-lg">Total Products</h3>
+								<p class="text-2xl font-bold"><%= prodcount%></p>
+							</div>
+						</a>
+
+						<div class="bg-green-500 text-white rounded-lg p-4 shadow">
+							<h3 class="text-lg">Total Categories</h3>
+							<p class="text-2xl font-bold"><%= catecount %></p>
+						</div>
+						<div class="bg-red-500 text-white rounded-lg p-4 shadow">
+							<h3 class="text-lg">Products Sold</h3>
+							<p class="text-2xl font-bold">350</p>
+						</div>
+						<div class="bg-yellow-500 text-white rounded-lg p-4 shadow">
+							<h3 class="text-lg">Active Users</h3>
+							<p class="text-2xl font-bold">80</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Create Product -->
+
+				<div class="bg-white shadow-md rounded-lg p-4 mb-6">
+					<h2 class="text-2xl font-bold mb-6">Create Product</h2>
+					<form
+						action="/products"
+						method="post"
+						enctype="multipart/form-data"
+						class="space-y-6">
+						<!-- Product Name -->
+						<div>
+							<label for="product-name" class="block text-lg font-medium"
+								>Product Name</label
+							>
+							<input
+								type="text"
+								id="product-name"
+								name="name"
+								class="w-full p-3 border border-gray-300 rounded mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+								placeholder="Enter product name" />
+						</div>
+
+						<!-- Product Price -->
+						<div>
+							<label for="product-price" class="block text-lg font-medium"
+								>Product Price</label
+							>
+							<input
+								type="number"
+								id="product-price"
+								name="price"
+								class="w-full p-3 border border-gray-300 rounded mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+								placeholder="Enter product price" />
+						</div>
+
+						<!-- Categories -->
+						<div>
+							<label for="category" class="block text-lg font-medium"
+								>Categories</label
+							>
+							<input
+								type="text"
+								id="category"
+								name="category"
+								class="w-full p-3 border border-gray-300 rounded mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+								placeholder="Enter Categories" />
+						</div>
+						<!-- Stock -->
+						<div>
+							<label for="stock" class="block text-lg font-medium">Stock</label>
+							<input
+								type="number"
+								id="stock"
+								name="stock"
+								class="w-full p-3 border border-gray-300 rounded mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+								placeholder="Enter available stock" />
+						</div>
+
+						<!-- Product Description -->
+						<div>
+							<label for="product-description" class="block text-lg font-medium"
+								>Product Description</label
+							>
+							<textarea
+								id="product-description"
+								rows="4"
+								name="description"
+								class="w-full p-3 border border-gray-300 rounded mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+								placeholder="Enter product description"></textarea>
+						</div>
+
+						<div>
+							<label for="wait" class="block text-lg font-medium">Wait</label>
+							<input
+								type="text"
+								id="wait"
+								name="wait"
+								class="w-full p-3 border border-gray-300 rounded mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+								placeholder="Enter wait" />
+						</div>
+						<!-- Product Image -->
+						<div>
+							<label for="product-image" class="block text-lg font-medium"
+								>Product Image</label
+							>
+							<input
+								type="file"
+								id="product-image"
+								name="image"
+								class="w-full p-3 border border-gray-300 rounded mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+						</div>
+
+						<!-- Submit Button -->
+						<div>
+							<button
+								type="submit"
+								class="w-60 bg-blue-500 text-white py-3 px-6 rounded-lg hover:bg-blue-600 transition">
+								Create Product
+							</button>
+						</div>
+					</form>
+				</div>
+
+				<!-- Create Category -->
+				<div
+					id="create-category"
+					class="bg-white shadow-md rounded-lg p-4 mb-6">
+					<h2 class="text-xl font-semibold mb-4">Create Category</h2>
+					<form class="space-y-4" action="/category/create" method="post">
+						<div>
+							<label for="category-name" class="block mb-3 font-medium"
+								>Category Name</label
+							>
+							<input
+								type="text"
+								id="category-name"
+								name="name"
+								class="w-full p-2 border border-gray-300 rounded" />
+						</div>
+						<div>
+							<button
+								type="submit"
+								class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600">
+								Create Category
+							</button>
+						</div>
+					</form>
+				</div>
+
+				<!-- Delete Product -->
+				<div id="delete-product" class="bg-white shadow-md rounded-lg p-4">
+					<h2 class="text-xl font-semibold mb-4">Delete Product</h2>
+					<form class="space-y-4" action="/products/delete" method="post">
+						<div>
+							<label for="product-id" class="block mb-3 font-medium"
+								>Product ID</label
+							>
+							<input
+								type="text"
+								id="product-id"
+								name="product_id"
+								class="w-full p-2 border border-gray-300 rounded" />
+						</div>
+						<div>
+							<button
+								type="submit"
+								class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600">
+								Delete Product
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+

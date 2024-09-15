@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Product Management</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+	</head>
+	<body class="bg-gray-100">
+		<!-- Header with Search Bar -->
+		<header class="bg-white shadow-md p-4">
+			<div class="max-w-7xl mx-auto flex justify-between items-center">
+				<h1 class="text-2xl font-bold text-gray-700">Product Management</h1>
+				<input
+					type="text"
+					placeholder="Search products..."
+					class="w-1/3 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+			</div>
+		</header>
+
+		<!-- Product List -->
+		<main class="mx-auto mt-8">
+			<!-- Category Section -->
+			<% for(let key in products){ %>
+			<section class="bg-white p-6 shadow-lg rounded-lg mb-6">
+				<h2 class="text-xl font-bold text-gray-700 mb-4">
+					Category: <%= key %>
+				</h2>
+
+				<!-- Product List Container -->
+				<div class="category-items">
+					<% products[key].forEach((elem, index) => { %>
+					<div
+						class="border border-gray-300 rounded-lg p-4 mb-4 flex justify-between items-center">
+						<div class="flex items-center space-x-4">
+							<!-- Product Image -->
+							<img
+								src="data:image/png;base64,<%=elem.image.toString('base64')%>"
+								alt="Product Image"
+								class="w-20 h-20 object-cover rounded-lg" />
+
+							<!-- Product Details -->
+							<div>
+								<p class="text-lg font-semibold text-gray-700">
+									Product Name: <%= elem.name %>
+								</p>
+								<p class="text-sm text-gray-600">Product ID: <%= elem._id %></p>
+								<p class="text-sm text-gray-600">Stock: <%= elem.stock %></p>
+								<p class="text-sm text-gray-600">
+									Description: <%= elem.description %>
+								</p>
+								<p class="text-sm text-gray-600">Price: <%= elem.price %></p>
+								<p class="text-sm text-gray-600">wait: <%= elem.wait %></p>
+							</div>
+						</div>
+
+						<!-- Action Buttons -->
+						<div class="flex space-x-4 relative">
+							<a href="/products/update/<%= elem._id %>">
+								<button
+									class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500">
+									Update
+								</button>
+							</a>
+
+							<form action="/products/delete/<%= elem._id %>">
+								<button
+									class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">
+									Delete
+								</button>
+							</form>
+						</div>
+					</div>
+					<% }) %>
+				</div>
+
+				<!-- Show More/Less Button -->
+			</section>
+			<% } %>
+		</main>
+	</body>
+</html>
+
